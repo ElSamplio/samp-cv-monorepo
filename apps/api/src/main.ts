@@ -5,7 +5,7 @@ const app = express();
 
 const greeting: Message = { message: 'Welcome to api!' };
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send(greeting);
 });
 
