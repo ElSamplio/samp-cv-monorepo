@@ -1,0 +1,84 @@
+{
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+  "sourceRoot": "apps/samp-cv-monorepo/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/samp-cv-monorepo",
+        "index": "apps/samp-cv-monorepo/src/index.html",
+        "baseHref": "/",
+        "main": "apps/samp-cv-monorepo/src/main.tsx",
+        "polyfills": "apps/samp-cv-monorepo/src/polyfills.ts",
+        "tsConfig": "apps/samp-cv-monorepo/tsconfig.app.json",
+        "assets": [
+          "apps/samp-cv-monorepo/src/favicon.ico",
+          "apps/samp-cv-monorepo/src/assets"
+        ],
+        "styles": ["apps/samp-cv-monorepo/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/samp-cv-monorepo/src/environments/environment.ts",
+              "with": "apps/samp-cv-monorepo/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "samp-cv-monorepo:build",
+        "hmr": true,
+        "proxyConfig": "apps/samp-cv-monorepo/proxy.conf.json"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "samp-cv-monorepo:build:development"
+        },
+        "production": {
+          "buildTarget": "samp-cv-monorepo:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/samp-cv-monorepo/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/samp-cv-monorepo"],
+      "options": {
+        "jestConfig": "apps/samp-cv-monorepo/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

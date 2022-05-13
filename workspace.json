@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "samp-cv-monorepo": "apps/samp-cv-monorepo",
+    "samp-cv-monorepo-e2e": "apps/samp-cv-monorepo-e2e"
+  }
+}
